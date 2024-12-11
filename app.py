@@ -4,6 +4,11 @@ import socket
 import random
 import os
 import argparse
+from signal import signal, SIGTERM
+
+
+def handler(signum, frame):
+  exit(0)
 
 app = Flask(__name__)
 
@@ -31,6 +36,7 @@ def main():
 
 
 if __name__ == "__main__":
+    signal(SIGTERM, handler)
 
     print(" This is a sample web application that displays a colored background. \n"
           " A color can be specified in two ways. \n"
